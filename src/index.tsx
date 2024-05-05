@@ -1,14 +1,16 @@
-// 물리 DOM 객체 사용
-// import React from 'react'
-// const pPhysicalDOM = document.createElement('p')
-// pPhysicalDOM.innerText = 'Hello Physical DOM World!'
-// document.body.appendChild(pPhysicalDOM)
-
-// 가상 DOM 객체 사용
-import React from 'react'
 import ReactDOM from 'react-dom/client'
+import * as D from './data'
+
+const children = D.makeArray(10).map((n, idx) => (
+  <div key={idx}>
+    <p>{D.randomId()}</p>
+    <p>{D.randomName()}</p>
+    <p>{D.randomJobTitle()}</p>
+    <p>{D.randomSentence()}</p>
+    <img src={D.randomAvatar()} width={100} height={100} />
+  </div>
+))
+const rootVirtualDOM = <div>{children}</div>
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-const pVirtualDOM = React.createElement('p', null, 'Hello virtual DOM world!')
-
-root.render(pVirtualDOM)
+root.render(rootVirtualDOM)
